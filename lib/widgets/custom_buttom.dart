@@ -4,26 +4,26 @@ class CustomButton extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
   final bool isHome;
-
   const CustomButton({
-    super.key,
+    Key? key,
     required this.text,
     required this.onTap,
-    required this.isHome,
-  });
+    this.isHome = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+
     return ElevatedButton(
       onPressed: onTap,
-      style: ElevatedButton.styleFrom(
-        minimumSize: Size(!isHome ? width : width / 5, 50),
-        backgroundColor: isHome ? Colors.blue : Colors.green,
-      ),
       child: Text(
         text,
         style: const TextStyle(fontSize: 16, color: Colors.white),
+      ),
+      style: ElevatedButton.styleFrom(
+        minimumSize: Size(!isHome ? width : width / 5, 50),
+        backgroundColor: Colors.blue,
       ),
     );
   }
